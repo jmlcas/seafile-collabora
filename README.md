@@ -4,6 +4,12 @@ Modificar datos en las líneas: 54, 55, 61 y 62
 
 Línea 56, si lo crees conveniente, puedes generar una clave con este comando "openssl rand -base64 32"
 
+Cambiar: 
+
+seafile.tudominio.com por el dominio ó subdominio real que uses
+
+collabora.tudominio.com por el dominio ó subdominio real que uses
+
 -----------------------------
 
 Si no has modificado los datos:
