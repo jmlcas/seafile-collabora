@@ -86,7 +86,7 @@ services:
       - dictionaries=es_ES
       - TZ=Europe/Madrid
     cap_add:
-      - MKNOD  
+      - MKNOD
     networks:
      - seafile-net
 
