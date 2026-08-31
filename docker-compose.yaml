@@ -1,0 +1,91 @@
+services:
+
+  db:
+    image: mariadb:latest
+    container_name: seafile-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SEAFILE_ADMIN_PASSWORD}
+      MYSQL_USER: seafile
+      MYSQL_PASSWORD: ${SEAFILE_ADMIN_PASSWORD}
+      MYSQL_DATABASE: seafile_db
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - seafile-net
+
+  memcached:
+    image: memcached:1.6
+    container_name: seafile-memcached
+    restart: unless-stopped
+    entrypoint: memcached -m 256
+    networks:
+      - seafile-net
+
+  seafile:
+    image: seafileltd/seafile:13.0
+    container_name: seafile
+    restart: unless-stopped
+    ports:
+      - "8200:8200"
+    environment:
+      DB_HOST: db
+      DB_ROOT_PASSWD: ${SEAFILE_ADMIN_PASSWORD}
+      TIME_ZONE: Europe/Madrid
+      SEAFILE_ADMIN_EMAIL: ${SEAFILE_ADMIN_EMAIL}
+      SEAFILE_ADMIN_PASSWORD: ${SEAFILE_ADMIN_PASSWORD}
+      SEAFILE_SERVER_HOSTNAME: ${SEAFILE_SERVER_HOSTNAME}
+      SEAFILE_SERVER_PORT: ${SEAFILE_SERVER_PORT}
+      SEAFILE_SERVER_HTTPS: ${SEAFILE_SERVER_HTTPS}
+    volumes:
+      - ./data/seafile:/shared
+    depends_on:
+      - db
+      - memcached
+    networks:
+      - seafile-net
+
+  seahub:
+    image: seafileltd/seahub:13.0
+    container_name: seahub
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: db
+      DB_ROOT_PASSWD: ${SEAFILE_ADMIN_PASSWORD}
+      TIME_ZONE: Europe/Madrid
+      SEAFILE_ADMIN_EMAIL: ${SEAFILE_ADMIN_EMAIL}
+      SEAFILE_ADMIN_PASSWORD: ${SEAFILE_ADMIN_PASSWORD}
+      SEAFILE_SERVER_HOSTNAME: ${SEAFILE_SERVER_HOSTNAME}
+      SEAFILE_SERVER_PORT: ${SEAFILE_SERVER_PORT}
+      SEAFILE_SERVER_HTTPS: ${SEAFILE_SERVER_HTTPS}
+    volumes:
+      - ./data/seafile:/shared
+      - ./seahub_settings.py:/opt/seafile/conf/seahub_settings.py
+    depends_on:
+      - db
+      - memcached
+      - seafile
+    networks:
+      - seafile-net
+
+  collabora:
+    image: collabora/code:23.05.9.1.1
+    container_name: collabora
+    restart: unless-stopped
+    ports:
+      - "9980:9980"
+    environment:
+      - domain=${COLLABORA_DOMAIN}
+      - DONT_GEN_SSL_CERT=TRUE
+      - extra_params=--o:ssl.enable=false
+      - dictionaries=${COLLABORA_DICIONARY}
+    cap_add:
+      - SYS_ADMIN
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    driver: bridge
