@@ -31,7 +31,7 @@ Añade estas líneas:
 OFFICE_SERVER_TYPE = 'CollaboraOffice'
 ENABLE_ONLYOFFICE = False
 ENABLE_OFFICE_WEB_APP = True
-OFFICE_WEB_APP_BASE_URL = 'https://collabora.jmlcas.es/hosting/discovery'
+OFFICE_WEB_APP_BASE_URL = 'https://collabora.tudominio.com/hosting/discovery'
 WOPI_ACCESS_TOKEN_EXPIRATION = 30 * 60
 OFFICE_WEB_APP_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
 ENABLE_OFFICE_WEB_APP_EDIT = True
