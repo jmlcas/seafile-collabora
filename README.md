@@ -22,7 +22,7 @@ Password: p4ssw0rd
 
 ------------------
 
-Modifica el archivo seahub_settings.py  - Ruta: /root/docker/seafile-collabora/opt/seafile-data/seafile/conf/seahub_settings.py
+Modifica el archivo seahub_settings.py  - Ruta: /root/docker/seafile-collabora/opt/seafile-data/seafile/conf/
 
 Añade estas líneas, pero modifica tudominio.com
 
