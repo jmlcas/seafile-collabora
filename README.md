@@ -22,10 +22,13 @@ Añade estas líneas:
 
 ```
 #Collabora Online
-ENABLE_COLLABORA = True
-COLLABORA_SERVER = 'https://collabora.dominio.com'
-COLLABORA_SERVER_PORT = 9980
-COLLABORA_SERVER_HTTPS = True
-COLLABORA_FILE_SERVER_ROOT = 'https://app.midominio.com'
+OFFICE_SERVER_TYPE = 'CollaboraOffice'
+ENABLE_ONLYOFFICE = False
+ENABLE_OFFICE_WEB_APP = True
+OFFICE_WEB_APP_BASE_URL = 'https://collabora.tudominio.com/hosting/discovery'
+WOPI_ACCESS_TOKEN_EXPIRATION = 30 * 60
+OFFICE_WEB_APP_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
+ENABLE_OFFICE_WEB_APP_EDIT = True
+OFFICE_WEB_APP_EDIT_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
 ```
 
