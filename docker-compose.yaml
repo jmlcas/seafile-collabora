@@ -62,8 +62,8 @@ services:
        SEADOC_IMAGE: seafileltd/sdoc-server:2.0-latest
        ENABLE_SEADOC: false #or true
        SEADOC_SERVER_URL: https://seafile.yourname.synology.me/sdoc-server
-       SEAFILE_SERVER_HOSTNAME: localhost:8200  # seafile.tudominio.com
-       SEAFILE_SERVER_PROTOCOL: http  # https
+       SEAFILE_SERVER_HOSTNAME: seafile.tudominio.com  #localhost:8200 
+       SEAFILE_SERVER_PROTOCOL: https  # http
        FORCE_HTTPS_IN_CONF: false #true
        SEAFILE_SERVER_LETSENCRYPT: false
     depends_on:
@@ -79,12 +79,14 @@ services:
       - "9980:9980"
     restart: unless-stopped
     environment:
-      - extra_params=--o:ssl.enable=false
-      - domain=localhost  # 1IP | collabora.tudominio.com
+      - extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:wopi.host=seafile.tudominio.com
+      - domain=collabora.tudominio.com  # 1IP:puerto 
       - username=User
       - password=p4ssw0rd
       - dictionaries=es_ES
       - TZ=Europe/Madrid
+    cap_add:
+      - MKNOD  
     networks:
      - seafile-net
 
