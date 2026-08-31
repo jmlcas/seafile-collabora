@@ -2,7 +2,7 @@ Modifica el archivo seahub_settings.py  - Ruta:
 
 Añade estas líneas:
 
-# Collabora Online
+(```)# Collabora Online
 
 ENABLE_COLLABORA = True
 
@@ -12,5 +12,5 @@ COLLABORA_SERVER_PORT = 9980
 
 COLLABORA_SERVER_HTTPS = True
 
-COLLABORA_FILE_SERVER_ROOT = 'https://app.midominio.com'
+COLLABORA_FILE_SERVER_ROOT = 'https://app.midominio.com' (```)
 
