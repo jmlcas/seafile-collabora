@@ -39,4 +39,4 @@ OFFICE_WEB_APP_EDIT_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm'
 ```
 --------------------
 
-[![Alt text](https://img.youtube.com/vi/WjAAkAttLbc/0.jpg)](https://www.youtube.com/watch?v=WjAAkAttLbc)
+[![Ver vídeo](https://img.youtube.com/vi/WjAAkAttLbc/0.jpg)](https://www.youtube.com/watch?v=WjAAkAttLbc)
